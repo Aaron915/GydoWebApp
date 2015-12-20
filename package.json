@@ -1,0 +1,23 @@
+{
+  "name": "gydowebapp",
+  "version": "0.1.0",
+  "description": "Main REST interface for Gydo",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aaron915/GydoWebApp.git"
+  },
+  "author": "Aaron Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aaron915/GydoWebApp/issues"
+  },
+  "homepage": "https://github.com/Aaron915/GydoWebApp#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3"
+  }
+}

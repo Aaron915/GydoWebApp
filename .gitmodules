@@ -1,0 +1,3 @@
+[submodule "GydoRouteBuilder"]
+	path = GydoRouteBuilder
+	url = https://github.com/Aaron915/GydoRouteBuilder.git

@@ -7,6 +7,7 @@ var routeCoordinate = require("./GydoRouteBuilder/RouteParameters/RouteCoordinat
 app.use(bodyParser.json());
 
 app.post('/routeParameters', function(req,res, next){
+    console.log(req.body);
     var distance = req.body.distance;
     var startCoord = req.body.startCoordinate;
     var secondCoord = req.body.secondCoordinate;

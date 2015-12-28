@@ -20,11 +20,22 @@ app.post('/routeParameters', function(req,res, next){
     var newRouteBuilder = new routeBuilder.RouteBuilder(newRouteParameters);
     newRouteBuilder.buildRoute(function(err, route){
         if (err) {
-            res.send({errorMessgae : err.message});
+            res.send(err);
         } else {
             res.send(route);
         }
     });
+});
+
+app.use(function(req,res,next){
+   var error = new Error("Not Found");
+   err.status = 404;
+    next(err);
+});
+
+app.use(function(err, req, res){
+    res.status(err.status || 500);
+   res.send(err);
 });
 
 var server = app.listen(3000, function(){

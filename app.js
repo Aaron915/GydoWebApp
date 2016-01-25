@@ -20,7 +20,11 @@ app.post('/routeParameters', function(req,res, next){
     var newRouteBuilder = new routeBuilder.RouteBuilder(newRouteParameters);
     newRouteBuilder.buildRoute(function(err, route){
         if (err) {
-            res.send(err);
+
+            res.send({
+                message : err.message,
+                code : err.code
+            });
         } else {
             res.send(route);
         }

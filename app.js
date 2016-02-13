@@ -31,6 +31,11 @@ app.post('/routeParameters', function(req,res, next){
     });
 });
 
+app.post('/coordinate', function(req, res, next){
+
+});
+
+
 app.use(function(req,res,next){
    var error = new Error("Not Found");
    err.status = 404;
@@ -45,5 +50,5 @@ app.use(function(err, req, res){
 var server = app.listen(3000, function(){
     var host = server.address().address;
     var port = server.address().port;
-   console.log('Example app listening at http://%s:%s', host, port);
+   console.log('App listening at http://%s:%s', host, port);
 });

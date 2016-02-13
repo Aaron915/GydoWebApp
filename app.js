@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 var routeBuilder = require("./GydoRouteBuilder/RouteBuilding/RouteBuilder");
 var routeParameters = require("./GydoRouteBuilder/RouteParameters/RouteParameters");
 var routeCoordinate = require("./GydoRouteBuilder/RouteParameters/RouteCoordinate");
+var coordinateProximityChecker = require("./GydoRouteBuilder/CoordinateProximityChecking/CoordinateProximityChecker");
+
 app.use(bodyParser.json());
 
 app.post('/routeParameters', function(req,res, next){
@@ -32,7 +34,20 @@ app.post('/routeParameters', function(req,res, next){
 });
 
 app.post('/coordinate', function(req, res, next){
-
+    var testCoord = req.body.coordinate;
+    var coordinate = new routeCoordinate.RouteCoordinate(testCoord.lat, testCoord.lon);
+    coordinateProximityChecker.determineIfLocationIsNearWay(coordinate,function(err, onRoad) {
+        if (err) {
+            res.send({
+                message : err.message,
+                code : err.code
+            })
+        } else {
+            res.send({
+                isOnRoad : onRoad
+            })
+        }
+    });
 });
 
 

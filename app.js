@@ -5,6 +5,7 @@ var routeBuilder = require("./GydoRouteBuilder/RouteBuilding/RouteBuilder");
 var routeParameters = require("./GydoRouteBuilder/RouteParameters/RouteParameters");
 var routeCoordinate = require("./GydoRouteBuilder/RouteParameters/RouteCoordinate");
 var coordinateProximityChecker = require("./GydoRouteBuilder/CoordinateProximityChecking/CoordinateProximityChecker");
+var areaAvailabilityChecker = require("./AreaAvailabilityChecker");
 
 app.use(bodyParser.json());
 
@@ -50,6 +51,18 @@ app.post('/coordinate', function(req, res, next){
     });
 });
 
+app.get('/available', function (req, res) {
+    if (req.query.lat && req.query.lon ) {
+        var coordinate = new routeCoordinate.RouteCoordinate(parseFloat(req.query.lat), parseFloat(req.query.lon));
+        res.send({
+           "available": areaAvailabilityChecker.coordinateIsNearRoute(coordinate)
+        });
+    } else {
+        res.send({
+            "Error": "lat or lon was not sent."
+        })
+    }
+});
 
 app.use(function(req,res,next){
    var error = new Error("Not Found");

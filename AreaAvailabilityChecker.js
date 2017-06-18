@@ -31,8 +31,8 @@ coordinateIsNearRoute = function(coordinate) {
     var isInArea = false;
     areas.forEach(function (area) {
         if (!isInArea) {
-            var latValid = coordinate.latitude > area.left && coordinate.latitude < area.right;
-            var lonValid = coordinate.longitude > area.lower && coordinate.longitude < area.upper;
+            var latValid = coordinate.longitude > area.left && coordinate.longitude < area.right;
+            var lonValid = coordinate.latitude > area.lower && coordinate.latitude < area.upper;
             isInArea = latValid && lonValid;
         }
     });
